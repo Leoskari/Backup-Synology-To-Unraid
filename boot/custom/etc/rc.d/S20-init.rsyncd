@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if ! grep ^rsync /etc/inetd.conf > /dev/null ; then
+cat <<-EOF >> /etc/inetd.conf
+rsync   stream  tcp     nowait  root    /usr/sbin/tcpd  /usr/bin/rsync --daemon
+EOF
+read PID < /var/run/inetd.pid
+kill -1 ${PID}
+fi
+
+cp /boot/custom/etc/rsyncd.conf /etc/rsyncd.conf
