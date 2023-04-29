@@ -1,0 +1,2 @@
+#!/bin/bash bash
+/boot/custom/etc/rc.d/S20-init.rsyncd
